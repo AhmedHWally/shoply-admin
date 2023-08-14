@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "800050778576",
+    "project_id": "shoply-81086",
+    "storage_bucket": "shoply-81086.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:800050778576:android:e095fe67fb8918a08de9d5",
+        "android_client_info": {
+          "package_name": "com.example.shoply"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "800050778576-bntb0opcqk6gjdu584bofarv56ftpnt3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.shoply",
+            "certificate_hash": "86c63e8a9d3193498f84201f0a6655f247c5d9d6"
+          }
+        },
+        {
+          "client_id": "800050778576-djocpvqr6sl7ve5vfa96cqscb7qrkngk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3K3z5RXZuSeofDZAh25qzC2_4sQAC7uQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "800050778576-djocpvqr6sl7ve5vfa96cqscb7qrkngk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "800050778576-fu3nl3dqrjn2fore1rltbde93pctbqjm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.shoply"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:800050778576:android:8cea37f70b173ebd8de9d5",
+        "android_client_info": {
+          "package_name": "com.example.shoply_admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "800050778576-djocpvqr6sl7ve5vfa96cqscb7qrkngk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3K3z5RXZuSeofDZAh25qzC2_4sQAC7uQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "800050778576-djocpvqr6sl7ve5vfa96cqscb7qrkngk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "800050778576-fu3nl3dqrjn2fore1rltbde93pctbqjm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.shoply"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
