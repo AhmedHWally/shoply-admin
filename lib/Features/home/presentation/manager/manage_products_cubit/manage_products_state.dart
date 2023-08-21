@@ -10,3 +10,5 @@ final class ManageProductsLoading extends ManageProductsState {}
 final class ManageProductsSuccess extends ManageProductsState {}
 
 final class ManageProductsFailed extends ManageProductsState {}
+
+final class ManageProductsFailedDuoToEmptyImage extends ManageProductsState {}

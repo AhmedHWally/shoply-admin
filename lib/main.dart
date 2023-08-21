@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'Features/authentication/presentation/login_view.dart';
 import 'Features/authentication/presentation/manager/login_cubit/login_cubit.dart';
 import 'Features/home/presentation/manager/products_cubit/products_cubit.dart';
 import 'Features/home/presentation/views/homeview.dart';
+import 'Features/onBoarding/presentation/views/onboarding_view.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -30,12 +32,11 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => LoginCubit()),
           BlocProvider(create: (context) => ProductsCubit()),
         ],
-        child: const MaterialApp(
-            // home: showHome as bool
-            //     ? isAuth as bool
-            //         ? const HomeView()
-            //         : const LoginView()
-            //     : const OnBoardingView()),
-            home: HomeView()));
+        child: MaterialApp(
+            home: showHome as bool
+                ? isAuth as bool
+                    ? const HomeView()
+                    : const LoginView()
+                : const OnBoardingView()));
   }
 }

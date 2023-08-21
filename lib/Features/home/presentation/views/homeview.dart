@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shoply_admin/Features/home/presentation/views/widgets/homeviewbody.dart';
+import 'package:shoply_admin/Features/home/presentation/views/widgets/home_view_widgets/homeviewbody.dart';
 
 import '../../../../constants.dart';
 

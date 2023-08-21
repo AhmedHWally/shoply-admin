@@ -9,7 +9,7 @@ class ProductsCubit extends Cubit<ProductsState> {
   ProductsCubit() : super(ProductsInitial());
   final _firestore = FirebaseFirestore.instance.collection('products');
   final List<Product> _productsList = [];
-  List<Product> get productsList => [..._productsList];
+  List<Product> get productsList => [..._productsList].reversed.toList();
   Future<void> loadProducts() async {
     emit(ProductsLoading());
     try {
@@ -29,5 +29,10 @@ class ProductsCubit extends Cubit<ProductsState> {
     } catch (e) {
       emit(ProductsFailure(errMessage: e.toString()));
     }
+  }
+
+  Future<void> removeItem(String id) async {
+    await _firestore.doc(id).delete();
+    emit(ProductsSuccess());
   }
 }

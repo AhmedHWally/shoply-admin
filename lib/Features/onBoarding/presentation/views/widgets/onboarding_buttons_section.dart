@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../../../constants.dart';
-import '../../../../../core/widgets/custom_text_button.dart';
+import 'custom_onboarding_text_button.dart';
 import '../../../../authentication/presentation/login_view.dart';
 
 class OnBoardingButtonsSection extends StatelessWidget {
@@ -30,7 +30,7 @@ class OnBoardingButtonsSection extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: isLastPage
-            ? CustomTextButton(
+            ? CustomOnBoardingTextButton(
                 buttonTitle: 'Get Started',
                 onPressed: () async {
                   precacheImage(const AssetImage(kLoginImage), context);
@@ -43,7 +43,7 @@ class OnBoardingButtonsSection extends StatelessWidget {
             : Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CustomTextButton(
+                  CustomOnBoardingTextButton(
                       onPressed: () => onBoardingController.animateToPage(2,
                           duration: const Duration(milliseconds: 500),
                           curve: Curves.easeInOut),
@@ -63,7 +63,7 @@ class OnBoardingButtonsSection extends StatelessWidget {
                               curve: Curves.easeInOut),
                     ),
                   ),
-                  CustomTextButton(
+                  CustomOnBoardingTextButton(
                       onPressed: () => onBoardingController.nextPage(
                           duration: const Duration(milliseconds: 500),
                           curve: Curves.easeInOut),
