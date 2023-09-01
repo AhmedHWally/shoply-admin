@@ -9,7 +9,10 @@ class ProductsCubit extends Cubit<ProductsState> {
   ProductsCubit() : super(ProductsInitial());
   final _firestore = FirebaseFirestore.instance.collection('products');
   final List<Product> _productsList = [];
-  List<Product> get productsList => [..._productsList].reversed.toList();
+  //List<Product> get productsList => [..._productsList].reversed.toList();
+  List<Product> _searchedProductsList = [];
+  List<Product> get searchedProductsList =>
+      [..._searchedProductsList].reversed.toList();
   Future<void> loadProducts() async {
     emit(ProductsLoading());
     try {
@@ -18,6 +21,7 @@ class ProductsCubit extends Cubit<ProductsState> {
         for (var doc in event.docs) {
           _productsList.add(Product.fromJson(doc.data()));
         }
+        _searchedProductsList = _productsList;
         emit(ProductsSuccess());
       });
     } on FirebaseException catch (e) {
@@ -31,8 +35,21 @@ class ProductsCubit extends Cubit<ProductsState> {
     }
   }
 
-  Future<void> removeItem(String id) async {
-    await _firestore.doc(id).delete();
+  void searchProducts(String value) {
+    value.trim() == "" ||
+            _productsList
+                .where((element) =>
+                    element.title.contains(value.trim()) ||
+                    element.category.contains(value.trim()))
+                .toList()
+                .isEmpty
+        ? _searchedProductsList = _productsList
+        : _searchedProductsList = _productsList
+            .where((element) =>
+                element.title.contains(value.trim()) ||
+                element.category.contains(value.trim()))
+            .toList();
+
     emit(ProductsSuccess());
   }
 }

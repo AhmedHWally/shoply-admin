@@ -6,7 +6,7 @@ class CustomTextBuilder extends StatelessWidget {
       {super.key,
       required this.title,
       this.shadowColor = Colors.black87,
-      this.fontSize = 18,
+      this.fontSize = 16,
       this.textAlign});
 
   final String title;

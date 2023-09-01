@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shoply_admin/Features/products/manager/products_cubit/products_cubit.dart';
 
-import 'package:shoply_admin/Features/home/presentation/views/products_view.dart';
+import 'package:shoply_admin/Features/products/views/products_view.dart';
 import 'package:shoply_admin/constants.dart';
-
-import '../../../manager/products_cubit/products_cubit.dart';
 
 class HomePageGridItem extends StatelessWidget {
   const HomePageGridItem({super.key, required this.title});

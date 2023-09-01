@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shoply_admin/Features/home/presentation/views/widgets/products_view_widgets/products_view_body.dart';
+import 'package:shoply_admin/Features/products/views/widgets/products_view_body.dart';
 
-import '../../../../constants.dart';
+import '../../../constants.dart';
 
 class ProductsView extends StatelessWidget {
   const ProductsView({super.key});

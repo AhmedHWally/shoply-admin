@@ -2,10 +2,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shoply_admin/Features/products/manager/products_cubit/products_cubit.dart';
 
 import 'Features/authentication/presentation/login_view.dart';
 import 'Features/authentication/presentation/manager/login_cubit/login_cubit.dart';
-import 'Features/home/presentation/manager/products_cubit/products_cubit.dart';
 import 'Features/home/presentation/views/homeview.dart';
 import 'Features/onBoarding/presentation/views/onboarding_view.dart';
 import 'firebase_options.dart';

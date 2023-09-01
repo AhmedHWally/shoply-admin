@@ -13,7 +13,3 @@ final class ProductsFailure extends ProductsState {
   final String errMessage;
   ProductsFailure({required this.errMessage});
 }
-
-final class ProductsAdded extends ProductsState {}
-
-final class ProductsFaildAdded extends ProductsState {}

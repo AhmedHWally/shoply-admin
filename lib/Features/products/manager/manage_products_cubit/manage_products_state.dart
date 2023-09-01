@@ -9,6 +9,16 @@ final class ManageProductsLoading extends ManageProductsState {}
 
 final class ManageProductsSuccess extends ManageProductsState {}
 
-final class ManageProductsFailed extends ManageProductsState {}
+final class ManageProductsFailed extends ManageProductsState {
+  final String message;
+  ManageProductsFailed({required this.message});
+}
 
 final class ManageProductsFailedDuoToEmptyImage extends ManageProductsState {}
+
+final class ConfirmRemove extends ManageProductsState {}
+
+final class ConfirmAddOrUpdate extends ManageProductsState {
+  final String type;
+  ConfirmAddOrUpdate({required this.type});
+}

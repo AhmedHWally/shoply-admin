@@ -4,8 +4,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
-
-import '../../../data/products_model.dart';
+import 'package:shoply_admin/Features/home/data/products_model.dart';
 
 part 'manage_products_state.dart';
 
@@ -17,37 +16,39 @@ class ManageProductsCubit extends Cubit<ManageProductsState> {
       String category, List<File> pickedImages) async {
     emit(ManageProductsLoading());
     try {
-      if (pickedImages.isEmpty) {
-        emit(ManageProductsFailedDuoToEmptyImage());
+      urls.clear();
+      for (var pickedImage in pickedImages) {
+        final ref = FirebaseStorage.instance
+            .ref()
+            .child('products_images')
+            .child(pickedImage.path.split('/').last);
+
+        await ref.putFile(pickedImage);
+        final url = await ref.getDownloadURL();
+        urls.add(url);
+      }
+
+      DocumentReference docRef = await _firestore.add(Product(
+        title: title,
+        id: '',
+        category: category,
+        price: num.parse(price),
+        imageUrl: urls,
+        description: about,
+      ).toJson());
+
+      final String docId = docRef.id;
+      await _firestore.doc(docId).update({'id': docId});
+      emit(ManageProductsSuccess());
+    } on FirebaseException catch (e) {
+      if (e.message != null) {
+        emit(ManageProductsFailed(message: e.toString()));
       } else {
-        urls.clear();
-        for (var pickedImage in pickedImages) {
-          final ref = FirebaseStorage.instance
-              .ref()
-              .child('products_images')
-              .child(pickedImage.path.split('/').last);
-
-          await ref.putFile(pickedImage);
-          final url = await ref.getDownloadURL();
-          urls.add(url);
-        }
-
-        DocumentReference docRef = await _firestore.add(Product(
-          title: title,
-          id: '',
-          category: category,
-          price: num.parse(price),
-          imageUrl: urls,
-          description: about,
-        ).toJson());
-
-        final String docId = docRef.id;
-        await _firestore.doc(docId).update({'id': docId});
-        emit(ManageProductsSuccess());
+        emit(ManageProductsFailed(message: 'Some thing went wrong!'));
       }
     } catch (e) {
       print(e);
-      emit(ManageProductsFailed());
+      emit(ManageProductsFailed(message: 'Some thing went wrong!'));
     }
   }
 
@@ -101,8 +102,45 @@ class ManageProductsCubit extends Cubit<ManageProductsState> {
         await _firestore.doc(product.id).update(updatedDataWithImages);
         emit(ManageProductsSuccess());
       }
+    } on FirebaseException catch (e) {
+      if (e.message != null) {
+        emit(ManageProductsFailed(message: e.toString()));
+      } else {
+        emit(ManageProductsFailed(message: 'Some thing went wrong!'));
+      }
     } catch (e) {
-      print(e);
+      emit(ManageProductsFailed(message: 'Some thing went wrong!'));
+    }
+  }
+
+  void confirmRemove() {
+    emit(ConfirmRemove());
+  }
+
+  void confirmAddOrUpdate(String type, {List<File>? images}) {
+    if (type == 'add') {
+      if (images!.isEmpty) {
+        emit(ManageProductsFailedDuoToEmptyImage());
+      } else {
+        emit(ConfirmAddOrUpdate(type: type));
+      }
+    } else {
+      emit(ConfirmAddOrUpdate(type: type));
+    }
+  }
+
+  Future<void> removeItem(String id) async {
+    try {
+      await _firestore.doc(id).delete();
+      emit(ManageProductsSuccess());
+    } on FirebaseException catch (e) {
+      if (e.message != null) {
+        emit(ManageProductsFailed(message: e.toString()));
+      } else {
+        emit(ManageProductsFailed(message: 'Some thing went wrong!'));
+      }
+    } catch (e) {
+      emit(ManageProductsFailed(message: 'Some thing went wrong!'));
     }
   }
 }
