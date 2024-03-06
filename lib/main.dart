@@ -2,7 +2,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shoply_admin/Features/products/manager/products_cubit/products_cubit.dart';
+import 'package:shoply_admin/Features/offers/presentation/manager/offers_cubit/offers_cubit.dart';
+import 'package:shoply_admin/Features/orders/presentation/manager/orders_cubit/orders_cubit.dart';
+import 'package:shoply_admin/Features/products/presentation/manager/manage_products_cubit/manage_products_cubit.dart';
+import 'package:shoply_admin/Features/products/presentation/manager/products_cubit/products_cubit.dart';
 
 import 'Features/authentication/presentation/login_view.dart';
 import 'Features/authentication/presentation/manager/login_cubit/login_cubit.dart';
@@ -31,8 +34,13 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider(create: (context) => LoginCubit()),
           BlocProvider(create: (context) => ProductsCubit()),
+          BlocProvider(create: (context) => ManageProductsCubit()),
+          BlocProvider(create: (context) => OrdersCubit()),
+          BlocProvider(create: (context) => OffersCubit()),
         ],
         child: MaterialApp(
+            theme: ThemeData(useMaterial3: false),
+            debugShowCheckedModeBanner: false,
             home: showHome as bool
                 ? isAuth as bool
                     ? const HomeView()

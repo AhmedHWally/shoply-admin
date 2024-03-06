@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shoply_admin/Features/products/manager/products_cubit/products_cubit.dart';
+import 'package:shoply_admin/Features/offers/presentation/manager/offers_cubit/offers_cubit.dart';
+import 'package:shoply_admin/Features/offers/presentation/views/offers_view.dart';
+import 'package:shoply_admin/Features/orders/presentation/manager/orders_cubit/orders_cubit.dart';
+import 'package:shoply_admin/Features/orders/presentation/views/orders_view.dart';
+import 'package:shoply_admin/Features/orders/presentation/views/widgets/oders_view_body.dart';
+import 'package:shoply_admin/Features/products/presentation/manager/products_cubit/products_cubit.dart';
 
-import 'package:shoply_admin/Features/products/views/products_view.dart';
+import 'package:shoply_admin/Features/products/presentation/views/products_view.dart';
 import 'package:shoply_admin/constants.dart';
 
 class HomePageGridItem extends StatelessWidget {
@@ -14,7 +19,7 @@ class HomePageGridItem extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: InkWell(
         borderRadius: BorderRadius.circular(16),
-        onTap: () {
+        onTap: () async {
           switch (title) {
             case 'products':
               {
@@ -25,14 +30,16 @@ class HomePageGridItem extends StatelessWidget {
               }
             case 'orders':
               {
-                print('orders title');
-                print('object');
+                BlocProvider.of<OrdersCubit>(context).loadOrders();
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const OrdersView()));
                 break;
               }
             case 'offers':
               {
-                print('offers title');
-                print('object');
+                BlocProvider.of<OffersCubit>(context).loadOffers();
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const OffersView()));
                 break;
               }
           }

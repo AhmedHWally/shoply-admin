@@ -54,9 +54,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
               validator: (value) {
                 switch (widget.hintText) {
                   case 'email':
-                    if (value!.isEmpty ||
-                        !value.contains('@') ||
-                        !value.contains('shoplyleader')) {
+                    if (value!.isEmpty || !value.contains('@')) {
                       return 'please enter a valid email';
                     } else {
                       return null;
