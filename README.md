@@ -1,9 +1,9 @@
 # shoply admin
 
-An e-commerce application created with flutter .. every user in this application can find different products , mark them as favorites,search for specific products , add products to the cart and place an order and follow it’s state until it’s delivered.
+An admin application created with flutter .. the admin in this application can add new products  and edit products and remove products , review orders and manage their state , add new offers and remove expired ones.
 
 # Created with :
-Flutter&dart, Firebase (Authentication(email and password & google sign in),Cloud FireStore, Storage) , Bloc(Cubit), Curved navigation bar, shared preferences,cachednetwork image, image picker, Carousel slider, smooth_page_indicator, intl
+Flutter&dart, Firebase (Authentication(email and password ),Cloud FireStore, Storage) , Bloc(Cubit) , shared preferences,cachednetwork image, image picker, smooth_page_indicator, intl
 
 # Images from the application :
 
